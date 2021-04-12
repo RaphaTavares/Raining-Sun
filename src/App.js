@@ -1,9 +1,9 @@
 import './App.css'
-import { Fragment, useEffect, useState } from 'react';
+import sky from './images/wallpaper.jpg'
 import Home from './Home.js';
 function App() {
  return (
-   <div className="App">
+   <div styles={{ backgroundImage: `url(${sky})`}} className="App">
      <Home/>
    </div>
  )

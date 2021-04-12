@@ -1,12 +1,12 @@
-import useFetch from "./useFetch";
 import { Fragment, useEffect, useState } from 'react';
+import './Home.css';
 const Home = () => {
   const kelvin = 273;
   const [iconURL, setIconURL] = useState(false);
   const [location, setLocation] = useState(false);
   const [weather, setWeather] = useState(false);
 
-   const getWeather = async(lat, lon) =>{
+   const getWeather = (lat, lon) =>{
     let accesskey = process.env.REACT_APP_OPEN_WEATHER_KEY;
     fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${accesskey}`)
     .then(res =>{
@@ -44,20 +44,26 @@ const Home = () => {
   if (!location) {
     return (
       <Fragment>
+        <div className="board">
         Você precisa habilitar a localização no browser o/
+        </div>
       </Fragment>
     )
   } else if (!weather && !iconURL) {
     return (
       <Fragment>
+        <div className="board">
         Carregando o clima...
+        </div>
       </Fragment>
     )
   } else {
     return (      
       <Fragment>
+        <div className="board">
         {console.log(weather)}
         <h3>Clima agora em {weather.name} ({weather.weather[0].description/*['weather'][0]['description']*/})</h3>
+        <img src={iconURL} alt="weather image"/>
         <hr/>
         <ul>
           <li>Temperatura atual: {(weather['main']['temp'] - kelvin).toFixed(2)}°</li>
@@ -65,8 +71,8 @@ const Home = () => {
           <li>Temperatura minima: {(weather['main']['temp_min'] - kelvin).toFixed(2)}°</li>
           <li>Pressão: {weather['main']['pressure']} hpa</li>
           <li>Humidade: {weather['main']['humidity']}%</li>
-          <img src={iconURL} alt="weather image"/>
         </ul>
+        </div>
       </Fragment>
     );
   }
