@@ -7,6 +7,7 @@ const Home = () => {
   const [location, setLocation] = useState(false);
   const [weather, setWeather] = useState(false);
 
+  
    const getWeather = (lat, lon) =>{
     let accesskey = process.env.REACT_APP_OPEN_WEATHER_KEY;
     fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${accesskey}`)
